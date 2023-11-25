@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/main"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".TabActivity">
+
+
+<androidx.viewpager.widget.ViewPager
+    android:id="@+id/viewPager"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:contentDescription="News">
+
+<!--    <TabLayout-->
+<!--        android:id="@+id/tablayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:tabGravity="fill"-->
+<!--        app:tabMode="scrollable"-->
+<!--        app:tabSelectedTextColor="@color/design_default_color_primary_dark"-->
+<!--        app:tabTextAppearance="@style/TextAppearance.Design.Tab">-->
+
+<!--    </TabLayout>-->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/design_default_color_primary_dark"
+        app:tabTextAppearance="@style/TextAppearance.Design.Tab">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Tab 1"
+            android:contentDescription="Tab 1 content description" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+</androidx.viewpager.widget.ViewPager>
+
+
+</LinearLayout>
