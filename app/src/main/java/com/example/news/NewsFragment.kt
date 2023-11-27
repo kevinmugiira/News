@@ -99,113 +99,13 @@ class NewsFragment : Fragment(), NewsAdapter.OnItemClickListener {
         binding.recyclerView.adapter = adapter
     }
 
-//    fun fetchData(context: Context, newsSource: String?, callback: (NewsResponse) -> Unit) {
-//        newsSource?.let { source ->
-//            val okHttpClient = NetworkManager.okHttpClient // Using the OkHttpClient instance from NetworkManager
-//
-//            val request = Request.Builder()
-//                .url("https://newsapi.org/v2/everything?q=USA%20Today&from=2023-10-25&sortBy=publishedAt&apiKey=a4a02da3e52e4ca887761273351e9ebc")
-//                .build()
-//
-//            okHttpClient.newCall(request).enqueue(object : Callback {
-//                override fun onFailure(call: Call, e: IOException) {
-//                    // Display a Toast for the failure on the main UI thread
-//                    (context as? TabActivity)?.runOnUiThread {
-//                        Toast.makeText(context, "Request Failed", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//
-//                override fun onResponse(call: Call, response: Response) {
-//                    if (response.isSuccessful) {
-//                        val responseData = response.body?.string()
-//
-//                        // Parse the JSON response into NewsResponse using Gson
-//                        val news: NewsResponse? = Gson().fromJson(responseData, object : TypeToken<NewsResponse>() {}.type)
-//
-//                        // Check if the news object is not null and not empty
-//                        news?.let {
-//                            if (it.articles.isNotEmpty()) {
-//                                // Invoke the callback with the parsed news data on the main UI thread
-//                                (context as? TabActivity)?.runOnUiThread {
-//                                    callback(it)
-//                                }
-//                            } else {
-//                                // Handle empty news data on the main UI thread
-//                                (context as? TabActivity)?.runOnUiThread {
-//                                    Toast.makeText(context, "No news articles found", Toast.LENGTH_SHORT).show()
-//                                }
-//                            }
-//                        } ?: run {
-//                            // Handle null news data on the main UI thread
-//                            (context as? TabActivity)?.runOnUiThread {
-//                                Toast.makeText(context, "Failed to parse news data", Toast.LENGTH_SHORT).show()
-//                            }
-//                        }
-//                    } else {
-//                        // Handle unsuccessful response on the main UI thread
-//                        (context as? TabActivity)?.runOnUiThread {
-//                            Toast.makeText(context, "Request Failed", Toast.LENGTH_SHORT).show()
-//                        }
-//                    }
-//                }
-//            })
-//        } ?: run {
-//            // Handle invalid news source on the main UI thread
-//            (context as? TabActivity)?.runOnUiThread {
-//                Toast.makeText(context, "Invalid news source", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
-
-//    fun fetchData(context: Context, newsSource: String?, callback: (NewsResponse) -> Unit) {
-//        newsSource?.let { source ->
-//            val okHttpClient = NetworkManager.okHttpClient // Using the OkHttpClient instance from NetworkManager
-//
-//            val request = Request.Builder()
-//                .url("https://your-api-url.com/news?source=$source&from=2023-10-25&sortBy=publishedAt&apiKey=your_api_key")
-//                .build()
-//
-//            okHttpClient.newCall(request).enqueue(object : Callback {
-//                override fun onFailure(call: Call, e: IOException) {
-//                    Toast.makeText(context, "Request Failed", Toast.LENGTH_SHORT).show()
-//                }
-//
-//                override fun onResponse(call: Call, response: Response) {
-//                    if (response.isSuccessful) {
-//                        val responseData = response.body?.string()
-//
-//                        // Parse the JSON response into NewsResponse using Gson
-//                        val news: NewsResponse? = Gson().fromJson(responseData, object : TypeToken<NewsResponse>() {}.type)
-//
-//                        // Check if the news object is not null and not empty
-//                        news?.let {
-//                            if (it.articles.isNotEmpty()) {
-//                                callback(it) // Invoke the callback with the parsed news data
-//
-////                            val news: NewsResponse? = response.body()
-////                        callback(news)
-//                    } else {
-//                        // Handle unsuccessful response
-//                        Toast.makeText(context, "Request Failed", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//
-////                override fun onFailure(call: Call, t: Throwable) {
-////                    // Handle failure or exceptions here
-////                    Toast.makeText(context, "Request Failed", Toast.LENGTH_SHORT).show()
-////                }
-//            })
-//        } ?: run {
-//            Toast.makeText(context, "Invalid news source", Toast.LENGTH_SHORT).show()
-//        }
-//    }
 
     fun fetchData(context: Context, newsSource: String?, callback: (NewsResponse) -> Unit) {
         newsSource?.let { source ->
             val apiKey = "a4a02da3e52e4ca887761273351e9ebc"
             val service = ApiClient.newsApiService
 
-            service.getNews(source, "2023-10-25", "publishedAt", apiKey)
+            service.getNews(source, "2023-10-27", "publishedAt", apiKey)
                 .enqueue(object : Callback<NewsResponse> {
                     override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
                         if (response.isSuccessful) {
